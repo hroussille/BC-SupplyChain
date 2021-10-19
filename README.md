@@ -91,8 +91,16 @@ truffle compile
 
 Test the smart contracts :
 
+For ganache-gui :
+
 ```sh
 truffle test
+```
+
+For ganache-cli :
+
+```sh
+truffle test --network developmentCLI
 ```
 
 Deploy them to your prefered network :
