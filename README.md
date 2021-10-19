@@ -62,11 +62,22 @@ Compile the smart contracts :
 truffle compile
 ```
 
+Test the smart contracts :
+
+```sh
+truffle test
+```
+
 Deploy them to your prefered network :
 
 ```sh
 # For dev environment connecting to ganache-gui
 truffle migrate
+```
+
+```sh
+#For dev environment connecting to ganache-cli
+truffle migrate --network developmentCLI
 ```
 
 ```sh
