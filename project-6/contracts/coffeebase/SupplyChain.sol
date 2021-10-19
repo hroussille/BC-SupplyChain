@@ -286,6 +286,8 @@ contract SupplyChain is
         items[_upc].ownerID = msg.sender;
         items[_upc].consumerID = msg.sender;
         items[_upc].itemState = State.Purchased;
+
+        emit Purchased(_upc);
     }
 
     // Define a function 'fetchItemBufferOne' that fetches the data
