@@ -56,63 +56,45 @@ App = {
     },
 
     initWeb3: async function () {
-        /// Find or Inject Web3 Provider
-        /// Modern dapp browsers...
-        if (window.ethereum) {
-            App.web3Provider = window.ethereum;
-            try {
-                // Request account access
-                await window.ethereum.enable();
-            } catch (error) {
-                // User denied account access...
-                console.error("User denied account access")
-            }
-        }
-        // Legacy dapp browsers...
-        else if (window.web3) {
-            App.web3Provider = window.web3.currentProvider;
-        }
-        // If no injected web3 instance is detected, fall back to Ganache
-        else {
-            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+     
+        const provider = await detectEthereumProvider();
+
+        if (provider) {
+            App.web3Provider = provider;
+            App.web3 = new Web3(App.web3Provider);
+            App.getMetaskAccountID();
         }
 
-        App.getMetaskAccountID();
+        else {
+            alert("Please install Metamask !");
+        }
 
         return App.initSupplyChain();
     },
 
-    getMetaskAccountID: function () {
-        web3 = new Web3(App.web3Provider);
-
+    getMetaskAccountID: async function () {
         // Retrieving accounts
-        web3.eth.getAccounts(function(err, res) {
-            if (err) {
-                console.log('Error:',err);
-                return;
-            }
-            console.log('getMetaskID:',res);
-            App.metamaskAccountID = res[0];
-
-        })
+        try {
+            const accounts = await App.web3Provider.request({method: 'eth_accounts'});
+            console.log('getMetaskID:', accounts);
+            App.metamaskAccountID = accounts[0];
+        }
+        catch (err) {
+            console.log('Error:',err);
+            return;
+        }
     },
 
-    initSupplyChain: function () {
-        /// Source the truffle compiled smart contracts
-        var jsonSupplyChain='../../build/contracts/SupplyChain.json';
-        
-        /// JSONfy the smart contracts
-        $.getJSON(jsonSupplyChain, function(data) {
-            console.log('data',data);
-            var SupplyChainArtifact = data;
-            App.contracts.SupplyChain = TruffleContract(SupplyChainArtifact);
-            App.contracts.SupplyChain.setProvider(App.web3Provider);
-            
-            App.fetchItemBufferOne();
-            App.fetchItemBufferTwo();
-            App.fetchEvents();
-
-        });
+    initSupplyChain: async function () {
+        await axios.get('../../build/contracts/SupplyChain.json')
+            .then(function (response) {
+                SupplyChainArtifact = response.data
+                App.contracts.SupplyChain = TruffleContract(SupplyChainArtifact)
+                App.contracts.SupplyChain.setProvider(App.web3Provider)
+                App.fetchItemBufferOne();
+                App.fetchItemBufferTwo();
+                App.fetchEvents();
+            }) 
 
         return App.bindEvents();
     },
@@ -176,6 +158,7 @@ App = {
                 App.originFarmLatitude, 
                 App.originFarmLongitude, 
                 App.productNotes
+                , {from: App.metamaskAccountID}
             );
         }).then(function(result) {
             $("#ftc-item").text(result);
@@ -218,7 +201,7 @@ App = {
         var processId = parseInt($(event.target).data('id'));
 
         App.contracts.SupplyChain.deployed().then(function(instance) {
-            const productPrice = web3.toWei(1, "ether");
+            const productPrice = App.web3.utils.toWei('1', "ether");
             console.log('productPrice',productPrice);
             return instance.sellItem(App.upc, App.productPrice, {from: App.metamaskAccountID});
         }).then(function(result) {
@@ -234,7 +217,7 @@ App = {
         var processId = parseInt($(event.target).data('id'));
 
         App.contracts.SupplyChain.deployed().then(function(instance) {
-            const walletValue = web3.toWei(3, "ether");
+            const walletValue = App.web3.utils.toWei('3', "ether");
             return instance.buyItem(App.upc, {from: App.metamaskAccountID, value: walletValue});
         }).then(function(result) {
             $("#ftc-item").text(result);
