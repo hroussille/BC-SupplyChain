@@ -61,6 +61,12 @@ By default the dev configurations connects to ganache-gui.
 
 HD wallet mnemonic : "spirit supply whale amount human item harsh scare congress discover talent hamster"
 
+A helper script is present to start ganache-cli with the aformentioned mnemonic :
+
+```sh
+./start_ganache-cli.sh
+```
+
 ### Build the DApp
 
 Move to the app folder :
