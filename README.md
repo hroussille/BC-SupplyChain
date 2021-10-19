@@ -11,6 +11,11 @@ This DApp allows for 4 different groups
 - Retailer
 - Consumer
 
+Only the owner (smart contract creator) can initially allow external addresses inside the groups.
+Once an address is part of a group, it can allow external addresses to join the group on its behalf.
+
+All group specific function are protected against non authorized usage.
+
 ## Diagrams
 
 ### Activity Diagram 
@@ -94,3 +99,10 @@ npm run dev
 ```
 
 You should now see the frontent at : http://localhost:3000
+
+
+### Rinkeby address
+
+This app has been deployed to the Rinkeby test network, see the transaction with [this link](https://rinkeby.etherscan.io/tx/0xf44c7d04e80169be86ffaddb18713f6a2a2b47e2e50d4fc19fc1a251e9ade301)
+
+The smart contract address is : 0xa6D17AB24F857Aa5a51CCf74D2509b27b880af57
