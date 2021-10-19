@@ -42,6 +42,14 @@ All group specific function are protected against non authorized usage.
 - Node v14.16.0
 - Web3.js v1.5.3
 
+To install Truffle and the above requirements please use the following command :
+
+```sh
+npm install -g ganache-cli
+```
+
+To install any additional modules please use the following command inside the app folder :
+
 ```sh
 npm install
 ```
