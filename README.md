@@ -46,7 +46,7 @@ The following libraries are fetched through CDN :
 - truffle-contract
 - axios
 - web3
-- 
+
 ### Prerequisites
 
 Please make sure you've already installed ganache-cli or ganache-gui, Truffle and enabled MetaMask extension in your browser.
