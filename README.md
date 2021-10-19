@@ -56,6 +56,12 @@ HD wallet mnemonic : "spirit supply whale amount human item harsh scare congress
 
 ### Build the DApp
 
+Move to the app folder :
+
+```sh
+cd app
+```
+
 Compile the smart contracts :
 
 ```sh
