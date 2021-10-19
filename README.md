@@ -1,6 +1,6 @@
 # Supply chain & data auditing
 
-This repository containts a basic Ethereum DApp that demonstrates a Supply Chain flow between a Seller and Buyer. 
+This repository containts an Ethereum DApp that demonstrates a Supply Chain flow between a Producers, Distributors, Retailers and Consumers.
 
 ## Groups
 
