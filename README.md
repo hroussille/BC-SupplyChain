@@ -15,19 +15,19 @@ This DApp allows for 4 different groups
 
 ### Activity Diagram 
 
-![Activity](images/ftc_product_overview.png)
+![Activity](https://github.com/hroussille/BC-SupplyChain/blob/master/images/Activity.png)
 
 ### Sequence Diagram
 
-![Sequence](images/ftc_farm_details.png)
+![Sequence](https://github.com/hroussille/BC-SupplyChain/blob/master/images/Sequence.png)
 
 ### State Diagram
 
-![State](images/ftc_product_details.png)
+![State](https://github.com/hroussille/BC-SupplyChain/blob/master/images/State.png)
 
 ### UML Diagram
 
-![UML](images/ftc_transaction_history.png)
+![UML](https://github.com/hroussille/BC-SupplyChain/blob/master/images/UML.png)
 
 
 ## Requirements
