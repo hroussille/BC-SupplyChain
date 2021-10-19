@@ -47,11 +47,11 @@ npm install
 ## CDN libraries
 
 The following libraries are fetched through CDN :
-- @metamask/detect-provider
-- truffle-contract
-- axios
-- web3
-- 
+- @metamask/detect-provider : proper non version specific provider identification
+- truffle-contract : syntaxic sugar over truffle built smart contracts
+- axios : clean REST requests
+- web3 : interact with the Ethereum blockchain
+
 ### Prerequisites
 
 Please make sure you've already installed ganache-cli or ganache-gui, Truffle and enabled MetaMask extension in your browser.
@@ -60,6 +60,12 @@ By default the dev configurations connects to ganache-gui.
 HD wallet mnemonic : "spirit supply whale amount human item harsh scare congress discover talent hamster"
 
 ### Build the DApp
+
+Move to the app folder :
+
+```sh
+cd app
+```
 
 Compile the smart contracts :
 
