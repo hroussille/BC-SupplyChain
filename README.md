@@ -35,10 +35,12 @@ All group specific function are protected against non authorized usage.
 ![UML](https://github.com/hroussille/BC-SupplyChain/blob/master/images/UML.png)
 
 
-## Requirements
+## Requirements / versions
 
-- nodejs
-- ganache (gui or cli)
+- Truffle v5.4.13 (core: 5.4.13)
+- Solidity - 0.8.8 (solc-js)
+- Node v14.16.0
+- Web3.js v1.5.3
 
 ```sh
 npm install
